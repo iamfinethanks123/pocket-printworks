@@ -1,47 +1,13 @@
-# Pocket Printworks 公開網站資產
+# Pocket Printworks
 
-此目錄是供主agent發布至GitHub Pages的獨立網站根目錄。網站不需要建置、套件或伺服器程式。此次只準備檔案，沒有Git操作、瀏覽器操作、Apple操作或發布。
+Official player support, six-language privacy pages and the TestFlight beta website. Public App Store release is still in preparation.
 
-## 已包含
+https://iamfinethanks123.github.io/pocket-printworks/
 
-- `index.html`、`styles.css`、`site.js`：英文與繁中首頁、玩法、150份正式委託＋12份合併基礎練習免費、香港HK$38一次買斷其餘350份、進階模式、六份終局及Blossom／Mint外觀。沒有體力、廣告或訂閱。
-- `invite-url.txt`：已填入負責人核實的公開TestFlight邀請。首頁只讀取本網站根的這個檔案，確認URL格式後才啟用按鈕。App Store公開版仍標示準備中。
-- `native/privacy-{en,yue,zh-TW,zh-CN,ja,ko}.html`：六語私隱政策。
-- `native/support-{en,yue,zh-TW,zh-CN,ja,ko}.html`：六語玩家支援。
-- `native/feedback.html`：五題回饋頁。答案只留頁面記憶體，不收姓名或電郵；使用者可自行下載JSON或複製文字，再另行交付。不自動提交，也沒有表單後端。
-- `.nojekyll`：靜態檔案標記。
+This repository contains only static website files and actual app media. It contains no app source code, player saves, private credentials or signing files.
 
-12份私隱／支援頁由App目前的法務資產逐檔複製，回饋頁由測試包複製。頁面之間使用相對連結；公開支援聯絡地址屬政策及支援內容的一部分。
+The six iPhone screenshots and 26-second gameplay preview were captured from version1.0(13) using isolated test progress. The friend-play image shows its selection screen; it does not certify a cross-network match. Purchase screenshots use Apple’s local US StoreKit test price. Real purchases show the player’s local App Store price; Hong Kong reference price is HK$38.
 
-## 同步與研究記錄界線
+The first150 campaign puzzles and12 practice puzzles are free. One non-consumable purchase unlocks350 more campaign puzzles, advanced modes, six finales and Blossom/Mint styles. No ads, energy or subscriptions.
 
-iCloud同步與App內研究記錄均預設關閉。
-
-- iCloud同步須自行開啟，將已完成委託、作品、收藏印法、自製謎題及星數存入私人iCloud Drive的App容器，並合併有效進度。未完成工作線、裝置設定、購買權限及研究記錄不隨此同步。
-- Game Center首次記錄只在同一已登入玩家之間合併；其他玩家或未認領紀錄不轉移，排行榜分享同意不會由另一裝置自動開啟。完整說明保留在六語私隱政策內。
-- 研究記錄只留本機，最多1000項，開啟App時清理超過30日的記錄。不自動上傳、不同步iCloud、不包含在遊戲備份。只有使用者手動匯出並另行選擇分享，接收者才會取得檔案。
-
-首頁只讀取同一網站的邀請設定、圖片及影片，沒有第三方字型、追蹤、程式庫或瀏覽器儲存。使用者主動按TestFlight連結後才前往Apple；支援電郵亦由使用者自行發送。主機自身的存取紀錄由主機處理。
-
-## 待root補入的真實媒體
-
-- `assets/01-workbench.png`：目標與試印。
-- `assets/02-workflow.png`：工具次序與工作線。
-- `assets/03-portfolio.png`：真實完成作品。
-- `assets/04-friends.png`：朋友對戰選擇頁或房間大堂；不以此表示雙端或跨網絡對戰已驗收。
-- `assets/05-chapters.png`：章節及150／151邊界。
-- `assets/06-unlock.png`：完整版範圍、當地價格及恢復購買。
-- `assets/preview.mp4`：可選，15–30秒實際操作。
-
-此目錄沒有生成圖、假App截圖或假影片。缺少或載入失敗的圖片會隱藏圖框並保留標題；影片載入成功後才顯示，不自動播放。
-
-## 發布前最後核對
-
-- [ ] root補齊真實媒體，確認內容與擬提交App版本一致。
-- [ ] 以HTTP／HTTPS開啟首頁及13份`native/`頁面，確認手機排版、下載JSON、複製文字與影片行為。
-- [ ] 主agent確認TestFlight公開邀請仍有效並有可用版本；URL格式檢查本身不代表名額或即時狀態。
-- [ ] 主agent只發布此目錄，並獨自處理GitHub建立與發布。
-
-已以明確檔案清單準備公開資產，未複製App原始碼、Verification、玩家存檔、憑證、描述檔、金鑰或Git資料。沒有加入測試者或玩家的個人資料。
-
-本輪已通過HTML／CSS基本結構、JavaScript語法、本地連結與頁內錨點、12份法務頁及回饋頁的來源內容一致性檢查。首頁與13份`native/`頁面所用的非媒體連結均已存在；邀請啟用及缺少媒體的顯示邏輯另經模擬DOM檢查。這些不代表已在公開主機、瀏覽器或實際手機驗收。
+The feedback form stores answers in page memory and exports only when the player chooses. It has no automatic submission, analytics or third-party resources. iCloud earned-progress sync and on-device research logging are both off by default in the app; full details are in the six-language privacy pages.
