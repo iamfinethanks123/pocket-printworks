@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>五題試玩回饋 · Pocket Printworks</title>
+  <style>
+    :root { color-scheme: light; --paper: #fffef9; --ink: #213856; --muted: #596b7b; --rule: #c9d2d7; --teal: #14665f; --pink: #c53c6a; --wash: #edf5f3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f1f4f5; color: var(--ink); font: 17px/1.7 "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif; }
+    main { max-width: 780px; margin: 32px auto; padding: 32px 36px; background: var(--paper); border-top: 8px solid var(--teal); }
+    .brand { margin: 0 0 12px; font: 700 26px/1.3 Georgia, "Times New Roman", serif; }
+    .brand::after { content: ""; display: inline-block; width: 12px; height: 12px; margin-left: 14px; border-radius: 50%; background: var(--pink); box-shadow: 8px 0 0 #1f8a91; vertical-align: middle; }
+    h1 { margin: 0 0 12px; font-size: clamp(26px, 5vw, 34px); line-height: 1.4; }
+    h2 { margin: 0 0 12px; font-size: 21px; }
+    p { margin: 0 0 16px; }
+    .muted, .hint { color: var(--muted); }
+    .hint { margin: 6px 0 0; font-size: 15px; }
+    .notice { padding: 16px 18px; background: var(--wash); border-left: 4px solid var(--teal); }
+    .notice p:last-child { margin: 0; }
+    .context { padding: 26px 0 8px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .field { display: block; margin-bottom: 18px; }
+    .field > span, .group-label { display: block; margin-bottom: 7px; font-weight: 650; }
+    input, select, textarea, button { font: inherit; }
+    input:not([type="radio"]), select, textarea { width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid #9baeb9; border-radius: 5px; background: #fff; color: var(--ink); font-size: 16px; }
+    textarea { min-height: 100px; resize: vertical; }
+    input:disabled { background: #eef1f2; color: var(--muted); }
+    :focus-visible { outline: 3px solid #167d8d; outline-offset: 3px; }
+    fieldset { min-width: 0; margin: 28px 0 0; padding: 24px 0 0; border: 0; border-top: 1px solid var(--rule); }
+    legend { width: 100%; padding: 0 0 4px; font-size: 23px; font-weight: 750; line-height: 1.5; }
+    .number { display: inline-block; margin-right: 8px; color: var(--teal); }
+    .choices { display: grid; gap: 10px; margin: 14px 0 20px; }
+    .choice { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 5px; cursor: pointer; }
+    input[type="radio"] { width: 20px; height: 20px; flex: 0 0 20px; accent-color: var(--teal); }
+    .time { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .actions { margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--ink); }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 16px; }
+    button { min-height: 48px; padding: 11px 18px; border: 1px solid var(--teal); border-radius: 5px; background: var(--teal); color: #fff; font-weight: 650; cursor: pointer; }
+    button.secondary { background: transparent; color: var(--teal); }
+    button.clear { border-color: var(--rule); background: transparent; color: var(--muted); }
+    button:disabled { opacity: .55; cursor: default; }
+    #status { padding: 12px 14px; border: 1px solid var(--rule); font-size: 16px; }
+    #manual-copy { margin-top: 20px; }
+    #copy-text { min-height: 240px; }
+    footer { margin-top: 28px; color: var(--muted); font-size: 15px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 600px) { main { margin: 0; padding: 24px 20px; } .grid { grid-template-columns: 1fr; gap: 0; } .buttons { flex-direction: column; } button { width: 100%; } legend { font-size: 21px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="brand">Pocket Printworks</p>
+    <h1 id="form-title">五題試玩回饋</h1>
+    <p>玩過之後，把你停下來的地方和感覺留下來。所有問題都可跳過，不知道就填「未知」。</p>
+    <div class="notice">
+      <p><strong>這份回饋尚未提交。</strong> 答案只留在本頁記憶體，不會自動傳送或保存草稿。請自行下載 JSON 或複製文字，再交給開發者。</p>
+      <p class="hint">不用填姓名或電郵，請勿加入帳戶、密碼或付款資料。未匯出的答案可能在重新整理或關閉頁面後遺失。</p>
+    </div>
+  </header>
+
+  <!-- No native form element: pressing Enter cannot send answers or put them in a URL. -->
+  <div id="feedback-fields" role="form" aria-labelledby="form-title">
+    <section class="context" aria-labelledby="context-title">
+      <h2 id="context-title">這次試玩</h2>
+      <div class="grid">
+        <label class="field" for="participant-code"><span>匿名代號</span><input id="participant-code" type="text" maxlength="40" autocomplete="off" placeholder="可自訂，例如 P07；不用真名"></label>
+        <label class="field" for="cohort"><span>組別</span><select id="cohort"><option value="">未填</option><option value="casual">休閒玩家</option><option value="puzzle">解謎玩家</option></select></label>
+        <label class="field" for="app-build"><span>App 版本／build</span><input id="app-build" type="text" maxlength="60" autocomplete="off" placeholder="可在 TestFlight 查看；不知道可留空"></label>
+        <label class="field" for="session-date"><span>試玩日期</span><input id="session-date" type="date" autocomplete="off"></label>
+        <label class="field" for="first-time"><span>是否第一次玩 Pocket Printworks？</span><select id="first-time"><option value="">未填</option><option value="yes">是</option><option value="no">否</option><option value="unknown">不確定</option></select></label>
+        <label class="field" for="session-kind"><span>場次</span><select id="session-kind"><option value="">未填</option><option value="self10">自行試玩 10 分鐘</option><option value="observed20">主持人觀察 20 分鐘</option></select></label>
+      </div>
+    </section>
+
+    <fieldset>
+      <legend><span class="number">1.</span>你玩到哪裏停下來？</legend>
+      <div class="grid">
+        <label class="field" for="full-ten"><span>首次 10 分鐘是否完整玩完？</span><select id="full-ten"><option value="">未填</option><option value="yes">是</option><option value="no">提早停止</option><option value="unknown">不確定</option></select></label>
+        <label class="field" for="stop-minutes"><span>若提早停止，大約玩了幾分鐘？</span><input id="stop-minutes" type="number" min="0" max="10" step="0.5" inputmode="decimal" autocomplete="off" placeholder="不知道可留空"></label>
+      </div>
+      <label class="field" for="success-status"><span>第一次見到「完成／合格」的時間</span><select id="success-status"><option value="">未填</option><option value="time_known">記得大約時間</option><option value="unknown">不知道</option><option value="not_yet">尚未成功</option></select></label>
+      <div class="time">
+        <label class="field" for="success-minutes"><span>第幾分鐘</span><input id="success-minutes" type="number" min="0" step="1" inputmode="numeric" autocomplete="off" disabled></label>
+        <label class="field" for="success-seconds"><span>再加幾秒</span><input id="success-seconds" type="number" min="0" max="59" step="1" inputmode="numeric" autocomplete="off" disabled></label>
+      </div>
+      <p class="hint">從首次打開 App 畫面算起，包含閱讀和試錯，不是關卡內碼錶。只有分鐘也可填，秒數留空當作 0；不用猜精確時間。</p>
+      <div class="grid">
+        <label class="field" for="time-source"><span>這個時間來自</span><select id="time-source"><option value="">未填</option><option value="participant_estimate">自己估計</option><option value="observer">主持人計時</option><option value="other">其他</option></select></label>
+        <label class="field" for="time-source-note"><span>其他時間來源（可略過）</span><input id="time-source-note" type="text" maxlength="200" autocomplete="off"></label>
+        <label class="field" for="completion-count"><span>首 10 分鐘完成了多少關？</span><input id="completion-count" type="number" min="0" step="1" inputmode="numeric" autocomplete="off" placeholder="不知道可留空；沒有完成可填 0"></label>
+        <label class="field" for="stopped-route"><span>10 分鐘時／提早停止時所在路線</span><select id="stopped-route"><option value="">未填／不知道</option><option value="practice">基礎練習</option><option value="campaign">正式委託</option><option value="other">其他</option></select></label>
+      </div>
+      <label class="field" for="stopped-job"><span>當時關卡的編號或名稱</span><input id="stopped-job" type="text" maxlength="160" autocomplete="off" placeholder="不知道可填「未知」"></label>
+      <label class="field" for="continue-intent"><span>當時想</span><select id="continue-intent"><option value="">未填</option><option value="continue">繼續玩</option><option value="later">休息後再玩</option><option value="stop">暫時不想再玩</option><option value="unsure">不確定</option></select></label>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="number">2.</span>第一次卡住在哪裏？</legend>
+      <label class="field" for="stuck-status"><span>有沒有卡住？</span><select id="stuck-status"><option value="">未填</option><option value="none_reported">沒有卡住</option><option value="stuck">有卡住</option><option value="unknown">記不起</option></select></label>
+      <label class="field" for="stuck-job"><span>路線及關卡</span><input id="stuck-job" type="text" maxlength="160" autocomplete="off" placeholder="例如基礎練習的關卡名稱；未知亦可"></label>
+      <label class="field" for="stuck-reason"><span>你想做甚麼？哪一處看不懂、按不到或沒有預期反應？</span><textarea id="stuck-reason" maxlength="2000" autocomplete="off"></textarea></label>
+      <label class="field" for="stuck-action"><span>後來怎樣處理？</span><textarea id="stuck-action" maxlength="1000" autocomplete="off" placeholder="例如再試、看提示、問人或離開"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="number">3.</span>你最喜歡哪一樣？</legend>
+      <label class="field" for="favourite"><span>可選一樣，或寫「沒有」</span><textarea id="favourite" maxlength="1000" autocomplete="off"></textarea></label>
+      <label class="field" for="favourite-reason"><span>讓你喜歡／沒有吸引你的原因</span><textarea id="favourite-reason" maxlength="2000" autocomplete="off"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="number">4.</span>你會考慮一次付 HK$38 解鎖完整版嗎？</legend>
+      <p>前六章 150 關正式委託、12 份基礎練習（包括雙張校對）、朋友對戰及作品集免費。完整版一次解鎖其餘 350 關、進階模式、六份終局及 Blossom／Mint 外觀。沒有體力、廣告或訂閱。</p>
+      <p class="notice"><strong>這是研究問題，不要求你付款。</strong> HK$38 是香港商店基準價；其他地區以當地商店顯示為準。試玩不需要購買。</p>
+      <div class="choices" role="radiogroup" aria-label="是否考慮一次購買完整版">
+        <label class="choice"><input type="radio" name="price-intent" value="consider"><span>會考慮</span></label>
+        <label class="choice"><input type="radio" name="price-intent" value="decline"><span>不會考慮</span></label>
+        <label class="choice"><input type="radio" name="price-intent" value="need_more_play"><span>要再玩多一點才知道</span></label>
+      </div>
+      <label class="field" for="price-reason"><span>最主要原因</span><textarea id="price-reason" maxlength="2000" autocomplete="off"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="number">5.</span>你會用一句甚麼話向朋友形容這個遊戲？</legend>
+      <label class="field" for="description"><span>用你自己的說法就可以</span><textarea id="description" maxlength="2000" autocomplete="off"></textarea></label>
+    </fieldset>
+  </div>
+
+  <section class="actions" aria-labelledby="export-title">
+    <h2 id="export-title">把回饋交給開發者</h2>
+    <p>先下載或複製，再透過 App「設定 → 玩家支援」自行發送。本頁不會寄信或代你提交，也不接收附件。如自願分享研究記錄或截圖，請檢查內容後另行附上。</p>
+    <p class="hint">使用支援電郵時，收件人會看到寄件地址；這個頁面本身不收集電郵。</p>
+    <div class="buttons">
+      <button id="download" type="button" disabled>下載 JSON</button>
+      <button id="copy" type="button" class="secondary" disabled>複製回饋文字</button>
+      <button id="clear" type="button" class="clear" disabled>清空本頁答案</button>
+    </div>
+    <p id="status" role="status" aria-live="polite">尚未提交。下載或複製後，仍需由你自行交給開發者。</p>
+    <div id="manual-copy" hidden>
+      <label class="field" for="copy-text"><span>請長按下方文字，全選後複製</span><textarea id="copy-text" readonly aria-describedby="copy-help"></textarea></label>
+      <p id="copy-help" class="hint">瀏覽器未能直接寫入剪貼簿，文字仍只顯示在本頁，尚未提交。</p>
+    </div>
+    <noscript><p class="notice">本頁需要 JavaScript 才能整理及匯出答案。請啟用後使用，或透過 App「玩家支援」自行提供五題回饋。本頁沒有傳送任何內容。</p></noscript>
+  </section>
+  <footer>本頁沒有第三方資源、追蹤或伺服器接收功能，也不使用瀏覽器儲存草稿。清空只影響本頁；已下載的檔案或剪貼簿內容需要另外處理。</footer>
+</main>
+<script>
+  "use strict";
+  const byId = (id) => document.getElementById(id);
+  const value = (id) => byId(id).value.trim() || null;
+  const numberValue = (id) => value(id) === null ? null : Number(value(id));
+  const labelValue = (id) => {
+    const control = byId(id);
+    return control.tagName === "SELECT" ? control.selectedOptions[0].textContent : value(id) || "未填";
+  };
+  const setStatus = (message) => { byId("status").textContent = message; };
+
+  function updateTimeInputs() {
+    const enabled = value("success-status") === "time_known";
+    for (const id of ["success-minutes", "success-seconds"]) {
+      byId(id).disabled = !enabled;
+      byId(id).setCustomValidity("");
+      if (!enabled) byId(id).value = "";
+    }
+  }
+
+  function validAnswers() {
+    byId("success-minutes").setCustomValidity("");
+    if (value("success-status") === "time_known" && value("success-minutes") === null && value("success-seconds") === null) {
+      byId("success-minutes").setCustomValidity("請填大約時間，或改選「不知道」；不需要猜測。");
+    }
+    for (const control of document.querySelectorAll("#feedback-fields input, #feedback-fields select, #feedback-fields textarea")) {
+      if (!control.reportValidity()) return false;
+    }
+    return true;
+  }
+
+  function collectAnswers() {
+    return {
+      schema_version: 1,
+      app: "Pocket Printworks",
+      submission_status: "not_submitted",
+      participant: {
+        participant_code: value("participant-code"), cohort: value("cohort"), app_version_build: value("app-build"),
+        session_date: value("session-date"), first_time_playing: value("first-time"), session_kind: value("session-kind")
+      },
+      answers: {
+        q1: {
+          first10_window_complete: value("full-ten"), stopped_after_minutes: numberValue("stop-minutes"),
+          first_success_status: value("success-status"),
+          first_success_seconds: value("success-status") === "time_known" ? (numberValue("success-minutes") || 0) * 60 + (numberValue("success-seconds") || 0) : null,
+          first_success_time_source: value("time-source"), time_source_note: value("time-source-note"),
+          first10_completions: numberValue("completion-count"), stopped_route: value("stopped-route"), stopped_job: value("stopped-job"), continue_intent: value("continue-intent")
+        },
+        q2: { stuck_status: value("stuck-status"), route_and_job: value("stuck-job"), block_reason: value("stuck-reason"), action_taken: value("stuck-action") },
+        q3: { favourite: value("favourite"), reason: value("favourite-reason") },
+        q4: { reference_price: "HK$38", purchase_required: false, price_intent: document.querySelector('input[name="price-intent"]:checked')?.value || null, price_reason: value("price-reason") },
+        q5: { one_sentence_description: value("description") }
+      }
+    };
+  }
+
+  function feedbackText(data) {
+    const q = data.answers;
+    const priceLabels = { consider: "會考慮", decline: "不會考慮", need_more_play: "要再玩多一點才知道" };
+    const time = q.q1.first_success_seconds === null ? labelValue("success-status") : `約 ${Math.floor(q.q1.first_success_seconds / 60)} 分 ${q.q1.first_success_seconds % 60} 秒`;
+    return [
+      "Pocket Printworks 五題試玩回饋（尚未提交）",
+      `匿名代號：${labelValue("participant-code")}；組別：${labelValue("cohort")}`,
+      `App 版本／build：${labelValue("app-build")}；試玩日期：${labelValue("session-date")}`,
+      `首次玩：${labelValue("first-time")}；場次：${labelValue("session-kind")}`,
+      "", "1. 你玩到哪裏停下來？",
+      `完整 10 分鐘：${labelValue("full-ten")}；提早停止分鐘：${labelValue("stop-minutes")}`,
+      `首次成功：${time}；時間來源：${labelValue("time-source")}；其他來源：${labelValue("time-source-note")}`,
+      `首 10 分鐘完成關數：${labelValue("completion-count")}`,
+      `停留路線：${labelValue("stopped-route")}；關卡：${labelValue("stopped-job")}；當時想：${labelValue("continue-intent")}`,
+      "", "2. 第一次卡住在哪裏？",
+      `卡住狀況：${labelValue("stuck-status")}；路線及關卡：${labelValue("stuck-job")}`,
+      `情況：${labelValue("stuck-reason")}；後來處理：${labelValue("stuck-action")}`,
+      "", "3. 你最喜歡哪一樣？", `${labelValue("favourite")}`, `原因：${labelValue("favourite-reason")}`,
+      "", "4. 會考慮一次付 HK$38 解鎖完整版嗎？（研究問題，不要求付款）",
+      priceLabels[q.q4.price_intent] || "未填", `原因：${labelValue("price-reason")}`,
+      "", "5. 會用一句甚麼話向朋友形容？", `${labelValue("description")}`,
+      "", "本頁沒有傳送這份回饋，也沒有包含任何附件。"
+    ].join("\n");
+  }
+
+  byId("success-status").addEventListener("change", updateTimeInputs);
+  for (const id of ["success-minutes", "success-seconds"]) {
+    byId(id).addEventListener("input", () => byId("success-minutes").setCustomValidity(""));
+  }
+  byId("download").addEventListener("click", () => {
+    if (!validAnswers()) return;
+    const file = new Blob([JSON.stringify(collectAnswers(), null, 2)], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "pocket-printworks-feedback.json";
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setStatus("已建立 JSON 下載，尚未提交。請確認檔案已儲存，再自行交給開發者。");
+  });
+  byId("copy").addEventListener("click", async () => {
+    if (!validAnswers()) return;
+    const text = feedbackText(collectAnswers());
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("clipboard_unavailable");
+      await navigator.clipboard.writeText(text);
+      byId("manual-copy").hidden = true;
+      byId("copy-text").value = "";
+      setStatus("回饋文字已複製，尚未提交。請貼到你選擇的訊息中，自行交給開發者。");
+    } catch {
+      byId("copy-text").value = text;
+      byId("manual-copy").hidden = false;
+      byId("copy-text").focus();
+      byId("copy-text").select();
+      setStatus("瀏覽器未能自動複製。請從下方文字框手動複製；回饋尚未提交。");
+    }
+  });
+  byId("clear").addEventListener("click", () => {
+    for (const control of document.querySelectorAll("#feedback-fields input, #feedback-fields select, #feedback-fields textarea")) {
+      if (control.type === "radio") control.checked = false;
+      else control.value = "";
+      control.setCustomValidity("");
+    }
+    updateTimeInputs();
+    byId("copy-text").value = "";
+    byId("manual-copy").hidden = true;
+    setStatus("本頁答案已清空，尚未提交。已下載檔案或剪貼簿內容不會一併刪除。");
+  });
+  for (const id of ["download", "copy", "clear"]) byId(id).disabled = false;
+</script>
+</body>
+</html>
